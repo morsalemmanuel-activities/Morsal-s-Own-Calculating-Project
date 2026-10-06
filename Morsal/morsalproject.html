@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QuickTools - Free Online Tools</title>
+  <meta name="description" content="Free online calculators and useful tools. Calculate age, BMI, percentages, tips, convert units and more.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      opacity: 0.9;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 30px auto;
+    }
+
+    .ad-space {
+      background: #e9edf5;
+      border: 1px dashed #aab4c5;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #697386;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .tool {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .tool h2 {
+      margin-bottom: 15px;
+      font-size: 21px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border-radius: 9px;
+      border: 1px solid #d5dbe5;
+      font-size: 16px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 12px;
+      padding: 12px;
+      background: #eef4ff;
+      color: #174ea6;
+      border-radius: 9px;
+      min-height: 44px;
+      font-weight: bold;
+    }
+
+    .timer {
+      font-size: 30px;
+      text-align: center;
+      margin: 15px 0;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 30px;
+      background: grey;
+      color: darkblue;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 29px;
+      }
+
+      .container {
+        width: 94%;
+      }
+
+      .tool {
+        padding: 20px;
+      }
+    }
+  h1{color:magenta;}
+  span{color:magenta;}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>MORSAL</h1><h2>⚡QuickTools</h2>
+  <p>Free, fast and simple<br> <span><b>Morsal Emmanuel</b></span>'s online tools</p>
+</header>
+
+<main class="container">
+
+  <!-- Advertisement area -->
+  <div class="ad-space">
+    Advertisement
+  </div>
+
+  <section class="tools">
+
+    <!-- AGE CALCULATOR -->
+    <div class="tool">
+      <h2>🎂 Age Calculator</h2>
+
+      <input type="date" id="birthDate">
+
+      <button onclick="calculateAge()">Calculate Age</button>
+
+      <div class="result" id="ageResult">
+        Enter your date of birth.
+      </div>
+    </div>
+
+
+    <!-- PERCENTAGE -->
+    <div class="tool">
+      <h2>📊 Percentage Calculator</h2>
+
+      <input type="number" id="percent" placeholder="Percentage">
+      <input type="number" id="percentNumber" placeholder="Number">
+
+      <button onclick="calculatePercentage()">Calculate</button>
+
+      <div class="result" id="percentageResult">
+        Result will appear here.
+      </div>
+    </div>
+
+
+    <!-- TIP CALCULATOR -->
+    <div class="tool">
+      <h2>💰 Tip Calculator</h2>
+
+      <input type="number" id="bill" placeholder="Bill amount">
+
+      <input type="number" id="tip" placeholder="Tip percentage">
+
+      <button onclick="calculateTip()">Calculate</button>
+
+      <div class="result" id="tipResult">
+        Result will appear here.
+      </div>
+    </div>
+
+
+    <!-- BMI -->
+    <div class="tool">
+      <h2>⚖️ BMI Calculator</h2>
+
+      <input type="number" id="weight" placeholder="Weight (kg)">
+
+      <input type="number" id="height" placeholder="Height (cm)">
+
+      <button onclick="calculateBMI()">Calculate BMI</button>
+
+      <div class="result" id="bmiResult">
+        Result will appear here.
+      </div>
+    </div>
+
+
+    <!-- UNIT CONVERTER -->
+    <div class="tool">
+      <h2>📏 Unit Converter</h2>
+
+      <input type="number" id="unitValue" placeholder="Enter value">
+
+      <select id="unitType">
+        <option value="km-mi">Kilometers → Miles</option>
+        <option value="mi-km">Miles → Kilometers</option>
+        <option value="kg-lb">Kilograms → Pounds</option>
+        <option value="lb-kg">Pounds → Kilograms</option>
+        <option value="c-f">Celsius → Fahrenheit</option>
+        <option value="f-c">Fahrenheit → Celsius</option>
+      </select>
+
+      <button onclick="convertUnit()">Convert</button>
+
+      <div class="result" id="unitResult">
+        Result will appear here.
+      </div>
+    </div>
+
+
+    <!-- RANDOM NUMBER -->
+    <div class="tool">
+      <h2>🎲 Random Number</h2>
+
+      <input type="number" id="minNumber" placeholder="Minimum">
+
+      <input type="number" id="maxNumber" placeholder="Maximum">
+
+      <button onclick="randomNumber()">Generate</button>
+
+      <div class="result" id="randomResult">
+        Your number will appear here.
+      </div>
+    </div>
+
+
+    <!-- COUNTDOWN -->
+    <div class="tool">
+      <h2>⏱️ Countdown Timer</h2>
+
+      <input type="number" id="seconds" placeholder="Seconds">
+
+      <button onclick="startCountdown()">Start Timer</button>
+
+      <div class="timer" id="timer">
+        00:00
+      </div>
+    </div>
+
+  </section>
+
+  <div class="ad-space" style="margin-top:30px;">
+    Advertisement
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 QuickTools</p>
+  <p>Free tools for everyone.</p>
+</footer>
+
+
+<script>
+
+  // AGE CALCULATOR
+  function calculateAge() {
+
+    const birth = document.getElementById("birthDate").value;
+
+    if (!birth) {
+      document.getElementById("ageResult").textContent =
+        "Please enter your date of birth.";
+      return;
+    }
+
+    const birthDate = new Date(birth);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    const monthDifference =
+      today.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 &&
+       today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+
+    document.getElementById("ageResult").textContent =
+      "You are " + age + " years old.";
+  }
+
+
+  // PERCENTAGE CALCULATOR
+  function calculatePercentage() {
+
+    const percentage =
+      parseFloat(document.getElementById("percent").value);
+
+    const number =
+      parseFloat(document.getElementById("percentNumber").value);
+
+    if (isNaN(percentage) || isNaN(number)) {
+      document.getElementById("percentageResult").textContent =
+        "Please enter both numbers.";
+      return;
+    }
+
+    const result = (percentage / 100) * number;
+
+    document.getElementById("percentageResult").textContent =
+      percentage + "% of " + number + " = " + result;
+  }
+
+
+  // TIP CALCULATOR
+  function calculateTip() {
+
+    const bill =
+      parseFloat(document.getElementById("bill").value);
+
+    const tipPercent =
+      parseFloat(document.getElementById("tip").value);
+
+    if (isNaN(bill) || isNaN(tipPercent)) {
+      document.getElementById("tipResult").textContent =
+        "Please enter the bill and tip percentage.";
+      return;
+    }
+
+    const tipAmount = bill * (tipPercent / 100);
+    const total = bill + tipAmount;
+
+    document.getElementById("tipResult").innerHTML =
+      "Tip: €" + tipAmount.toFixed(2) +
+      "<br>Total: €" + total.toFixed(2);
+  }
+
+
+  // BMI CALCULATOR
+  function calculateBMI() {
+
+    const weight =
+      parseFloat(document.getElementById("weight").value);
+
+    const heightCm =
+      parseFloat(document.getElementById("height").value);
+
+    if (isNaN(weight) || isNaN(heightCm) || heightCm <= 0) {
+      document.getElementById("bmiResult").textContent =
+        "Please enter valid measurements.";
+      return;
+    }
+
+    const heightM = heightCm / 100;
+
+    const bmi = weight / (heightM * heightM);
+
+    let category;
+
+    if (bmi < 18.5) {
+      category = "Underweight";
+    } else if (bmi < 25) {
+      category = "Normal range";
+    } else if (bmi < 30) {
+      category = "Overweight";
+    } else {
+      category = "Obesity range";
+    }
+
+    document.getElementById("bmiResult").textContent =
+      "BMI: " + bmi.toFixed(1) +
+      " — " + category;
+  }
+
+
+  // UNIT CONVERTER
+  function convertUnit() {
+
+    const value =
+      parseFloat(document.getElementById("unitValue").value);
+
+    const type =
+      document.getElementById("unitType").value;
+
+    if (isNaN(value)) {
+      document.getElementById("unitResult").textContent =
+        "Please enter a value.";
+      return;
+    }
+
+    let result;
+
+    switch(type) {
+
+      case "km-mi":
+        result = value * 0.621371;
+        break;
+
+      case "mi-km":
+        result = value * 1.60934;
+        break;
+
+      case "kg-lb":
+        result = value * 2.20462;
+        break;
+
+      case "lb-kg":
+        result = value * 0.453592;
+        break;
+
+      case "c-f":
+        result = (value * 9/5) + 32;
+        break;
+
+      case "f-c":
+        result = (value - 32) * 5/9;
+        break;
+    }
+
+    document.getElementById("unitResult").textContent =
+      "Result: " + result.toFixed(2);
+  }
+
+
+  // RANDOM NUMBER GENERATOR
+  function randomNumber() {
+
+    const min =
+      parseInt(document.getElementById("minNumber").value);
+
+    const max =
+      parseInt(document.getElementById("maxNumber").value);
+
+    if (isNaN(min) || isNaN(max) || min > max) {
+      document.getElementById("randomResult").textContent =
+        "Please enter a valid minimum and maximum.";
+      return;
+    }
+
+    const number =
+      Math.floor(Math.random() * (max - min + 1)) + min;
+
+    document.getElementById("randomResult").textContent =
+      "Random number: " + number;
+  }
+
+
+  // COUNTDOWN TIMER
+  let countdownInterval;
+
+  function startCountdown() {
+
+    clearInterval(countdownInterval);
+
+    let seconds =
+      parseInt(document.getElementById("seconds").value);
+
+    if (isNaN(seconds) || seconds <= 0) {
+      document.getElementById("timer").textContent =
+        "Enter seconds";
+      return;
+    }
+
+    updateTimer(seconds);
+
+    countdownInterval = setInterval(function() {
+
+      seconds--;
+
+      updateTimer(seconds);
+
+      if (seconds <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("timer").textContent =
+          "🎉 Time's up!";
+      }
+
+    }, 1000);
+  }
+
+
+  function updateTimer(totalSeconds) {
+
+    const minutes =
+      Math.floor(totalSeconds / 60);
+
+    const seconds =
+      totalSeconds % 60;
+
+    document.getElementById("timer").textContent =
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2, "0");
+  }
+
+</script>
+
+</body>
+</html>
